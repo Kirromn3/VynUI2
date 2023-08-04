@@ -497,7 +497,7 @@ function Library:AddWindow(options)
 			writefile(filePath, HS:JSONEncode(config))
 		end)
 	end
-	local function DisableAll()
+	local function Library:DisableAll()
 		for _, tab in next, Window.Tabs do
 					for _, section in next, tab.Sections do
 						for _, item in next, section.List do
