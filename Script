@@ -497,7 +497,35 @@ function Library:AddWindow(options)
 			writefile(filePath, HS:JSONEncode(config))
 		end)
 	end
-	
+	local function DisableAll()
+		for _, tab in next, Window.Tabs do
+					for _, section in next, tab.Sections do
+						for _, item in next, section.List do
+							local flag = item.Flag or item.Name
+		
+							    if not item.Name == "Show Distance" and not item.Name == "Tracers" and not item.Name == "Outlines" then
+								item[item.Type == "Toggle" and "Set" or "Toggle"](item, false)
+								
+
+							end
+		
+							if item.Type == "Bind" then
+								item:Set(Enum.KeyCode.RightControl)
+							elseif item.Type == "Slider" then
+							    if item.Name == "WalkSpeed" then
+								item:Set(16)
+								elseif item.Name == "JumpPower" then
+								item:Set(50)
+								elseif item.Name == "Field Of View" then
+								item:Set(70)
+								end
+
+							
+							end
+						end
+					end
+				end
+end
 	local function loadConfig(filePath)
 		pcall(function()
 			local config = HS:JSONDecode(readfile(filePath))
