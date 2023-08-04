@@ -509,18 +509,19 @@ function Library:AddWindow(options)
 							local flag = item.Flag or item.Name
 		
 							if config.Flags[flag] ~= nil then
-								item[item.Type == "Toggle" and "Set" or "Toggle"](item, config.Flags[flag])
+								item[item.Type == "Toggle" and "Set" or "Toggle"](item, false)
 print(config.Flags[flag])
 
 							end
 		
 							if item.Type == "Bind" then
-								item:Set(Enum.KeyCode[config.Binds[flag]])
+								item:Set(Enum.KeyCode.RightControl)
 		print(config.Binds[flag])
 
 							elseif item.Type == "Slider" then
 								item:Set(config.Sliders[flag])
 		print(config.Sliders[flag])
+		print(item.Name)
 
 							elseif item.Type == "Picker" then
 								local picker = config.Pickers[flag]
